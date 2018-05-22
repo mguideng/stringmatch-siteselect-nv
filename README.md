@@ -14,7 +14,7 @@ It can vary considerably whether a company, through an internal representative o
 
 This is conventional wisdom is this field, or common sense really, but I was still interested in seeing what the numbers had to say for Nevada. I knew this was possible. A survey section to rate various site selection factors was added in the applications that companies filled out to apply for state incentives four years ago. Since then, over 150 companies have applied for incentives.
 
-Aside from satiating my own curiosities, this project is more about applying R's regular expressions (regex) capabilities to mine text (and my learning how to put together a dashboard in Tableau afterwards). After some thought, this was an ideal fit and simple enough. I knew exactly what I wanted to do, but definitely wasn't so sure if that exact way was possible!. This turned out to be a pretty fun learning project.
+Aside from satiating my own curiosities, this project is more about applying R's regular expressions (regex) capabilities to mine text (and my learning how to put together a dashboard in Tableau afterwards). After some thought, this was an ideal fit and simple enough. I knew exactly what I wanted to do, but definitely wasn't so sure if that exact way was possible! This turned out to be a pretty fun learning project.
 
 Not surprisingly, workforce was indeed a resounding top criteria for the companies across industry sectors and regions in Nevada. Visualization results are available via my [PublicTableau profile](https://public.tableau.com/profile/maria.guideng#!/) and a write up can be found [here](https://mguideng.github.io/2018-05-14-workforce-matters-nv/).
 
@@ -32,7 +32,7 @@ Start by downloading and unzipping the "workflow.zip" folder. Contents include t
 -   `4script`: contains the R scripts for the two-step process outlined below
 
 **Step 1 - Screen PDF reports for presence of survey.**
-Start with script `1 script-to-screen-ssf.R`, which converts from PDF to text format (character vectors) for each report. Contains a for-loop to check whether there is a valid survey present, which evaluates to True or False. Output is a list with the Boolean result for each corresponding PDF file (`ssfboolean.csv`). After removing the false PDF reports from the source data subfolder, the final sample count is 129 total survey respondents.
+Start with script `1 script-to-screen-ssf.R`, which converts from PDF to text format (character vectors) for each report. Contains a for-loop to check whether there is a valid survey present, which evaluates to True or False. Output is a list with the Boolean result for each corresponding PDF file (`ssfboolean.csv`).
 
 **Step 2 - Mine text from report.**
 Script `2.1 script-stringmatch-wrapperfunction.R` creates CSV versions of the PDF reports (outputs to ' the `2downloadstxt` subfolder). Text is mined from the CSV files using a wrapper function, which calls on an external source script (`2.2 script-stringmatch.R`). Regular expressions and functions for pattern matching were used to identify and extract survey ratings for the site selection factors, plus other information about the company's expansion project (e.g., county location, industry sector, number of new jobs planned, and so on). The results are exported to the `3finalfiles` subfolder. Finally, the information is combined into a single CSV file (`masterR.csv`).
